@@ -1,4 +1,4 @@
-# uEditor（vue3版）
+# UEditor（vue3版）
 ***vue3版本*** | [**vue2版本**](https://github.com/QuietHear/vue-editor-block '浏览')
 
 
