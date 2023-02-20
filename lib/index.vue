@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-09 15:51:35
+ * @LastEditTime: 2023-02-20 15:09:38
 */
 <template>
   <div class="vue-ueditor-block-plus">
@@ -15,7 +15,6 @@
 </template>
 <script setup>
 import VueUeditorWrap from 'vue-ueditor-wrap';
-import { ref, onMounted, nextTick } from "vue";
 console.log(VueUeditorWrap, 'VueUeditorWrap');
 VueUeditorWrap.install()
 const emit = defineEmits([]);
