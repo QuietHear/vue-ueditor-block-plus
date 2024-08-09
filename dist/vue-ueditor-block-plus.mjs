@@ -1,45 +1,21 @@
-import { openBlock as r, createElementBlock as c } from "vue";
-const u = (e, t) => {
-  const o = e.__vccOpts || e;
-  for (const [n, s] of t)
-    o[n] = s;
-  return o;
-}, i = {
-  name: "vueUeditorBlockPlus",
-  emits: ["change"],
-  props: {
-    showBtn: {
-      type: Boolean,
-      default: !0
-    },
-    space: {
-      type: Number,
-      default: 10
-    },
-    getFunction: {
-      type: Function,
-      required: !0
-    },
-    setFunction: {
-      type: Function,
-      required: !0
-    }
-  },
-  setup(e, { attrs: t, slots: o, emit: n, expose: s }) {
-    return {};
-  }
-}, p = { class: "vue-ueditor-block-plus" };
-function a(e, t, o, n, s, f) {
-  return r(), c("div", p, "1");
+import { openBlock as s, createElementBlock as r } from "vue";
+const _ = (e, o) => {
+  const n = e.__vccOpts || e;
+  for (const [t, c] of o)
+    n[t] = c;
+  return n;
+}, u = {}, d = { class: "vue-ueditor-block-plus" };
+function i(e, o) {
+  return s(), r("div", d, " 123 ");
 }
-const d = /* @__PURE__ */ u(i, [["render", a]]), l = [d], _ = {
+const l = /* @__PURE__ */ _(u, [["render", i]]), a = [l], f = {
   install(e) {
-    l.forEach((t) => {
-      e.component(t.name, t);
+    a.forEach((o) => {
+      e.component(o.name, o);
     });
   }
 };
-typeof window < "u" && window.Vue && window.Vue.use(_);
+typeof window < "u" && window.Vue && window.Vue.use(f);
 export {
-  _ as default
+  f as default
 };

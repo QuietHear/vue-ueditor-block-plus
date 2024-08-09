@@ -4,10 +4,11 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2023-02-20 15:09:31
+ * @LastEditTime: 2024-08-09 17:33:51
 */
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
+import autoImport from "unplugin-auto-import/vite";
 import * as path from 'path';
 
 export default defineConfig(({ command, mode }) => ({
