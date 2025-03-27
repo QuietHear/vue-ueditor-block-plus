@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2025-03-27 13:28:59
+ * @LastEditTime: 2025-03-27 14:26:31
 */
 <template>
   <div :class="['vue-ueditor-block-plus', seeModel ? 'only-show' : '', cname]">
@@ -55,7 +55,7 @@ const props = defineProps({
       return {};
     }
   },
-  // 常用于表单中http://fex.baidu.com/ueditor/#start-submit
+  // 常用于表单中https://fex-team.github.io/ueditor/#start-submit
   name: {
     type: String,
     default: ''

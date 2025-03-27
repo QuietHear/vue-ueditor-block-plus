@@ -1,4 +1,4 @@
-import { ref as C, watch as _, nextTick as O, toRef as j, onDeactivated as M, onBeforeUnmount as H, openBlock as R, createElementBlock as L, normalizeClass as Y, unref as E, withDirectives as $, createElementVNode as F, vShow as k, normalizeStyle as q, createCommentVNode as z } from "vue";
+import { ref as C, watch as _, nextTick as O, toRef as j, onDeactivated as M, onBeforeUnmount as H, openBlock as R, createElementBlock as B, normalizeClass as Y, unref as E, withDirectives as $, createElementVNode as F, vShow as k, normalizeStyle as q, createCommentVNode as z } from "vue";
 class G {
   constructor() {
     this.listeners = {};
@@ -67,7 +67,7 @@ const K = ["name"], Q = ["innerHTML"], X = {
       type: Object,
       default: () => ({})
     },
-    // 常用于表单中http://fex.baidu.com/ueditor/#start-submit
+    // 常用于表单中https://fex-team.github.io/ueditor/#start-submit
     name: {
       type: String,
       default: ""
@@ -137,13 +137,13 @@ const K = ["name"], Q = ["innerHTML"], X = {
     _(
       () => e.onlyShow,
       () => {
-        e.onlyShow ? (f = l.UN_READY, r && r.removeListener("contentChange", b), d && d.disconnect(), r.destroy(), h.value = !0) : (h.value = !1, O(() => {
-          v();
+        e.onlyShow ? (f = l.UN_READY, r && r.removeListener("contentChange", v), d && d.disconnect(), r.destroy(), h.value = !0) : (h.value = !1, O(() => {
+          b();
         }));
       }
     );
     let f = l.UN_READY, r, d, p;
-    const D = "editor_" + J(8), w = C(null);
+    const U = "editor_" + J(8), w = C(null);
     let y = {
       // 如果需要上传功能,找后端小伙伴要服务器接口地址
       serverUrl: e.uploadUrl,
@@ -181,7 +181,7 @@ const K = ["name"], Q = ["innerHTML"], X = {
     };
     for (let t in e.extraConfig)
       t !== "serverUrl" && t !== "UEDITOR_HOME_URL" && (y[t] = e.extraConfig[t]);
-    const B = ["ueditor.config.js", "ueditor.all.min.js"], S = () => window.UE && window.UE.getEditor && window.UEDITOR_CONFIG && Object.keys(window.UEDITOR_CONFIG).length !== 0, U = j(e, "modelValue");
+    const L = ["ueditor.config.js", "ueditor.all.min.js"], S = () => window.UE && window.UE.getEditor && window.UEDITOR_CONFIG && Object.keys(window.UEDITOR_CONFIG).length !== 0, D = j(e, "modelValue");
     window.$loadEventBus || (window.$loadEventBus = new G());
     const T = (t) => new Promise((m, g) => {
       if (window.$loadEventBus.on(t, m), window.$loadEventBus.listeners[t].requested === !1) {
@@ -208,7 +208,7 @@ const K = ["name"], Q = ["innerHTML"], X = {
         t();
         return;
       }
-      const { jsLinks: g, cssLinks: i } = (e.editorDependencies || B).reduce(
+      const { jsLinks: g, cssLinks: i } = (e.editorDependencies || L).reduce(
         (u, c) => (/^((https?:)?\/\/)?[-a-zA-Z0-9]+(\.[-a-zA-Z0-9]+)+\//.test(c) || (c = y.UEDITOR_HOME_URL + c), c.slice(-3) === ".js" ? u.jsLinks.push(c) : c.slice(-4) === ".css" && u.cssLinks.push(c), u),
         {
           jsLinks: [],
@@ -221,24 +221,24 @@ const K = ["name"], Q = ["innerHTML"], X = {
         // 动态创建script是先加载完的先执行，所以不可以一次性创建所有资源的引入脚本
         W(g.map((u) => () => T(u)))
       ]).then(() => t()).catch(m);
-    }), b = () => {
+    }), v = () => {
       p = r.getContent(), a("update:modelValue", p);
     }, I = () => {
-      r.addListener("contentChange", b);
+      r.addListener("contentChange", v);
     }, P = () => {
       r.document.getElementById("baidu_pastebin") || (p = r.getContent(), a("update:modelValue", p));
     }, V = () => {
       d = new MutationObserver(Z(P, e.observerDebounceTime)), d.observe(r.body, e.observerOptions);
-    }, v = () => {
-      w.value && (w.value.id = D), r = window.UE.getEditor(D, y), r.addListener("ready", () => {
+    }, b = () => {
+      w.value && (w.value.id = U), r = window.UE.getEditor(U, y), r.addListener("ready", () => {
         f === l.READY ? r.setContent(e.modelValue) : (f = l.READY, a("ready", r), e.modelValue && r.setContent(e.modelValue)), Object.keys(e.httpParams).length > 0 && r.execCommand("serverparam", e.httpParams), e.mode === "observer" && window.MutationObserver ? V() : I();
       });
     }, N = () => r;
     return _(
-      U,
+      D,
       (t) => {
         f === l.UN_READY ? (f = l.PENDING, (e.forceInit || typeof window < "u") && x().then(() => {
-          w.value ? v() : O(() => v());
+          w.value ? b() : O(() => b());
         }).catch(() => {
           throw new Error(
             "[vue-ueditor-block-plus] UEditor 资源加载失败！请检查资源是否存在，UEDITOR_HOME_URL 是否配置正确！"
@@ -249,10 +249,10 @@ const K = ["name"], Q = ["innerHTML"], X = {
         immediate: !0
       }
     ), M(() => {
-      r && r.removeListener("contentChange", b), d && d.disconnect();
+      r && r.removeListener("contentChange", v), d && d.disconnect();
     }), H(() => {
       d && d.disconnect && d.disconnect(), e.destroy && r && r.destroy && r.destroy();
-    }), n({ getExample: N }), (t, m) => (R(), L("div", {
+    }), n({ getExample: N }), (t, m) => (R(), B("div", {
       class: Y(["vue-ueditor-block-plus", E(h) ? "only-show" : "", o.cname])
     }, [
       $(F("div", {
@@ -262,7 +262,7 @@ const K = ["name"], Q = ["innerHTML"], X = {
       }, null, 8, K), [
         [k, !E(h)]
       ]),
-      E(h) ? (R(), L("div", {
+      E(h) ? (R(), B("div", {
         key: 0,
         class: "view",
         style: q({
@@ -271,14 +271,14 @@ const K = ["name"], Q = ["innerHTML"], X = {
           "--img-loaderror": "url(" + o.staticUrl + "themes/default/images/loaderror.png)",
           "--img-anchor": "url(" + o.staticUrl + "themes/default/images/anchor.gif)"
         }),
-        innerHTML: E(U)
+        innerHTML: E(D)
       }, null, 12, Q)) : z("", !0)
     ], 2));
   }
 }, ee = [X], te = {
   install(o) {
     ee.forEach((n) => {
-      o.component(n.name, n);
+      o.component("vueUeditorBlockPlus", n);
     });
   }
 };

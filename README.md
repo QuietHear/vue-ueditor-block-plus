@@ -40,13 +40,13 @@
 
 * `static-url`：静态资源文件地址host，指向index.html-->String;非必传;默认'/UEditor/'
 
-* `upload-url`：图片上传的接口，后端可以看[文档](http://fex.baidu.com/ueditor/#server-deploy '后端文档')-->String;非必传;默认''
+* `upload-url`：图片上传的接口，后端可以看[文档](https://fex-team.github.io/ueditor/#server-deploy '后端文档')-->String;非必传;默认''
 
 * `http-params`：请求附带参数-->Object;非必传;默认'{}'
 
 * `editor-id`：富文本编辑器ID-->String;非必传;默认''
 
-* `name`：类似input框的name属性，[常用于表单中](http://fex.baidu.com/ueditor/#start-submit '文档')-->String;非必传;默认''
+* `name`：类似input框的name属性，[常用于表单中](https://fex-team.github.io/ueditor/#start-submit '文档')-->String;非必传;默认''
 
 * `mode`：监听内容变化的方式，校验变量只能是'observer'/'listener	'-->String;非必传;默认*'observer'*
 >
@@ -145,7 +145,7 @@
 
 
 ## 4. 官方文档
-[http://fex.baidu.com/ueditor/#start-start](http://fex.baidu.com/ueditor/#start-start '文档')
+[https://fex-team.github.io/ueditor/#start-start](https://fex-team.github.io/ueditor/#start-start '文档')
 
 
 ## 更多vue3组件
