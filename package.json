@@ -1,7 +1,7 @@
 {
   "name": "vue-ueditor-block-plus",
-  "description": "vue3版ueditor组件",
-  "version": "0.0.2",
+  "description": "ueditor组件 vue3版组件",
+  "version": "1.0.0",
   "author": "aFei <1106728884@qq.com>",
   "license": "MIT",
   "main": "dist/vue-ueditor-block-plus.umd.js",
@@ -16,7 +16,8 @@
   "scripts": {
     "init": "npm install",
     "build": "vite build",
-    "push": "npm publish"
+    "push": "npm publish",
+    "preview": "vite"
   },
   "keywords": [
     "Vue3",
@@ -26,9 +27,11 @@
   "repository": "https://github.com/QuietHear/vue-ueditor-block-plus",
   "devDependencies": {
     "@vitejs/plugin-vue": "^4.2.3",
+    "element-plus": "^2.8.4",
     "sass": "^1.77.8",
     "unplugin-auto-import": "^0.18.2",
     "vite": "^4.3.9",
-    "vue": "^3.3.4"
+    "vue": "^3.3.4",
+    "vue-router": "^4.4.3"
   }
 }

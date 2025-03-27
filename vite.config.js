@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2025-03-26 10:53:48
+ * @LastEditTime: 2025-03-27 13:59:10
 */
 import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
@@ -12,6 +12,8 @@ import autoImport from "unplugin-auto-import/vite";
 import * as path from 'path';
 
 export default defineConfig(({ command, mode }) => ({
+  // 打包的时候排除public目录
+  publicDir: command === 'build' ? false : true,
   resolve: {
     alias: {
       '~': path.resolve(__dirname, './'),

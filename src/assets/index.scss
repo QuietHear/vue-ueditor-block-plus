@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2025-03-26 11:26:50
+ * @LastEditTime: 2025-03-27 13:39:06
 */
 * {
   padding    : 0;
@@ -57,4 +57,17 @@ body,
   padding: 20px 10px;
 }
 
-.con-box {}
+.con-box {
+  .btn-group {
+    margin-bottom: 10px;
+  }
+
+  .see-content {
+    display        : flex;
+    justify-content: center;
+
+    .vue-ueditor-block-plus {
+      width: 50%;
+    }
+  }
+}
