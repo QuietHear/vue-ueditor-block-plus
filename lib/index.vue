@@ -3,8 +3,8 @@
 * @Date: 2022-11-10 14:56:59
 */
 /*
- * @LastEditors: aFei
- * @LastEditTime: 2025-03-27 14:26:31
+* @LastEditors: aFei
+* @LastEditTime: 2025-03-28 10:39:34
 */
 <template>
   <div :class="['vue-ueditor-block-plus', seeModel ? 'only-show' : '', cname]">
@@ -113,6 +113,11 @@ const props = defineProps({
   onlyShow: {
     type: Boolean,
     default: false,
+  },
+  // 延迟加载
+  delayInit: {
+    type: Number,
+    default: 0
   }
 });
 const STATUS_MAP = {
@@ -302,30 +307,32 @@ const observerChangeListener = () => {
 };
 // 实例化编辑器
 const initEditor = () => {
-  if (container.value) {
-    container.value.id = editorId;
-  }
-  editor = window.UE.getEditor(editorId, defaultConfig);
-  editor.addListener('ready', () => {
-    if (status === STATUS_MAP.READY) {
-      // 使用keep-alive组件会出现这种情况
-      editor.setContent(props.modelValue);
-    } else {
-      status = STATUS_MAP.READY;
-      emit('ready', editor);
-      if (props.modelValue) {
+  setTimeout(() => {
+    if (container.value) {
+      container.value.id = editorId;
+    }
+    editor = window.UE.getEditor(editorId, defaultConfig);
+    editor.addListener('ready', () => {
+      if (status === STATUS_MAP.READY) {
+        // 使用keep-alive组件会出现这种情况
         editor.setContent(props.modelValue);
+      } else {
+        status = STATUS_MAP.READY;
+        emit('ready', editor);
+        if (props.modelValue) {
+          editor.setContent(props.modelValue);
+        }
       }
-    }
-    if (Object.keys(props.httpParams).length > 0) {
-      editor.execCommand("serverparam", props.httpParams);
-    }
-    if (props.mode === 'observer' && window.MutationObserver) {
-      observerChangeListener();
-    } else {
-      normalChangeListener();
-    }
-  });
+      if (Object.keys(props.httpParams).length > 0) {
+        editor.execCommand("serverparam", props.httpParams);
+      }
+      if (props.mode === 'observer' && window.MutationObserver) {
+        observerChangeListener();
+      } else {
+        normalChangeListener();
+      }
+    });
+  }, props.delayInit);
 };
 const getExample = () => {
   return editor;

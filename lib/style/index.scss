@@ -4,9 +4,11 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2025-03-27 13:30:48
+ * @LastEditTime: 2025-03-27 16:55:43
 */
 .vue-ueditor-block-plus {
+  width: 100%;
+
   * {
     padding    : revert;
     margin     : revert;
@@ -17,6 +19,10 @@
 
   >textarea {
     display: none;
+  }
+
+  .edui-default .edui-editor-toolbarbox {
+    line-height: normal;
   }
 
   &.only-show {

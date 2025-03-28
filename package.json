@@ -1,7 +1,7 @@
 {
   "name": "vue-ueditor-block-plus",
   "description": "ueditor组件 vue3版组件",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "author": "aFei <1106728884@qq.com>",
   "license": "MIT",
   "main": "dist/vue-ueditor-block-plus.umd.js",

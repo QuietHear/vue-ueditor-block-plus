@@ -122,6 +122,11 @@ const K = ["name"], Q = ["innerHTML"], X = {
     onlyShow: {
       type: Boolean,
       default: !1
+    },
+    // 延迟加载
+    delayInit: {
+      type: Number,
+      default: 0
     }
   },
   emits: ["update:modelValue", "ready", "change"],
@@ -137,8 +142,8 @@ const K = ["name"], Q = ["innerHTML"], X = {
     _(
       () => e.onlyShow,
       () => {
-        e.onlyShow ? (f = l.UN_READY, r && r.removeListener("contentChange", v), d && d.disconnect(), r.destroy(), h.value = !0) : (h.value = !1, O(() => {
-          b();
+        e.onlyShow ? (f = l.UN_READY, r && r.removeListener("contentChange", b), d && d.disconnect(), r.destroy(), h.value = !0) : (h.value = !1, O(() => {
+          v();
         }));
       }
     );
@@ -181,9 +186,9 @@ const K = ["name"], Q = ["innerHTML"], X = {
     };
     for (let t in e.extraConfig)
       t !== "serverUrl" && t !== "UEDITOR_HOME_URL" && (y[t] = e.extraConfig[t]);
-    const L = ["ueditor.config.js", "ueditor.all.min.js"], S = () => window.UE && window.UE.getEditor && window.UEDITOR_CONFIG && Object.keys(window.UEDITOR_CONFIG).length !== 0, D = j(e, "modelValue");
+    const L = ["ueditor.config.js", "ueditor.all.min.js"], T = () => window.UE && window.UE.getEditor && window.UEDITOR_CONFIG && Object.keys(window.UEDITOR_CONFIG).length !== 0, D = j(e, "modelValue");
     window.$loadEventBus || (window.$loadEventBus = new G());
-    const T = (t) => new Promise((m, g) => {
+    const S = (t) => new Promise((m, g) => {
       if (window.$loadEventBus.on(t, m), window.$loadEventBus.listeners[t].requested === !1) {
         window.$loadEventBus.listeners[t].requested = !0;
         const i = document.createElement("script");
@@ -199,12 +204,12 @@ const K = ["name"], Q = ["innerHTML"], X = {
           window.$loadEventBus.emit(t);
         }, i.onerror = g, document.getElementsByTagName("head")[0].appendChild(i);
       }
-    }), x = () => new Promise((t, m) => {
+    }), I = () => new Promise((t, m) => {
       if (e.editorDependencies && e.editorDependenciesChecker && e.editorDependenciesChecker()) {
         t();
         return;
       }
-      if (!e.editorDependencies && S()) {
+      if (!e.editorDependencies && T()) {
         t();
         return;
       }
@@ -219,26 +224,28 @@ const K = ["name"], Q = ["innerHTML"], X = {
         Promise.all(i.map((u) => A(u))),
         // 依次加载依赖的JS文件，JS执行是有顺序要求的，比如ueditor.all.js就要晚于ueditor.config.js执行
         // 动态创建script是先加载完的先执行，所以不可以一次性创建所有资源的引入脚本
-        W(g.map((u) => () => T(u)))
+        W(g.map((u) => () => S(u)))
       ]).then(() => t()).catch(m);
-    }), v = () => {
+    }), b = () => {
       p = r.getContent(), a("update:modelValue", p);
-    }, I = () => {
-      r.addListener("contentChange", v);
+    }, x = () => {
+      r.addListener("contentChange", b);
     }, P = () => {
       r.document.getElementById("baidu_pastebin") || (p = r.getContent(), a("update:modelValue", p));
-    }, V = () => {
+    }, N = () => {
       d = new MutationObserver(Z(P, e.observerDebounceTime)), d.observe(r.body, e.observerOptions);
-    }, b = () => {
-      w.value && (w.value.id = U), r = window.UE.getEditor(U, y), r.addListener("ready", () => {
-        f === l.READY ? r.setContent(e.modelValue) : (f = l.READY, a("ready", r), e.modelValue && r.setContent(e.modelValue)), Object.keys(e.httpParams).length > 0 && r.execCommand("serverparam", e.httpParams), e.mode === "observer" && window.MutationObserver ? V() : I();
-      });
-    }, N = () => r;
+    }, v = () => {
+      setTimeout(() => {
+        w.value && (w.value.id = U), r = window.UE.getEditor(U, y), r.addListener("ready", () => {
+          f === l.READY ? r.setContent(e.modelValue) : (f = l.READY, a("ready", r), e.modelValue && r.setContent(e.modelValue)), Object.keys(e.httpParams).length > 0 && r.execCommand("serverparam", e.httpParams), e.mode === "observer" && window.MutationObserver ? N() : x();
+        });
+      }, e.delayInit);
+    }, V = () => r;
     return _(
       D,
       (t) => {
-        f === l.UN_READY ? (f = l.PENDING, (e.forceInit || typeof window < "u") && x().then(() => {
-          w.value ? b() : O(() => b());
+        f === l.UN_READY ? (f = l.PENDING, (e.forceInit || typeof window < "u") && I().then(() => {
+          w.value ? v() : O(() => v());
         }).catch(() => {
           throw new Error(
             "[vue-ueditor-block-plus] UEditor 资源加载失败！请检查资源是否存在，UEDITOR_HOME_URL 是否配置正确！"
@@ -249,10 +256,10 @@ const K = ["name"], Q = ["innerHTML"], X = {
         immediate: !0
       }
     ), M(() => {
-      r && r.removeListener("contentChange", v), d && d.disconnect();
+      r && r.removeListener("contentChange", b), d && d.disconnect();
     }), H(() => {
       d && d.disconnect && d.disconnect(), e.destroy && r && r.destroy && r.destroy();
-    }), n({ getExample: N }), (t, m) => (R(), B("div", {
+    }), n({ getExample: V }), (t, m) => (R(), B("div", {
       class: Y(["vue-ueditor-block-plus", E(h) ? "only-show" : "", o.cname])
     }, [
       $(F("div", {

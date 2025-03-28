@@ -4,7 +4,7 @@
 */
 /*
  * @LastEditors: aFei
- * @LastEditTime: 2025-03-26 10:57:58
+ * @LastEditTime: 2025-03-28 10:47:32
 */
 const router = createRouter({
   history: createWebHistory('/'),
@@ -12,6 +12,11 @@ const router = createRouter({
     {
       path: '/',
       name: 'main',
+      component: () => import('view/index.vue')
+    },
+    {
+      path: '/test',
+      name: 'test',
       component: () => import('view/index.vue')
     }
   ],

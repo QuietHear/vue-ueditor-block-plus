@@ -97,6 +97,11 @@
 
 * `only-show`：只展示内容-->Boolean;非必传;默认false
 
+* `delayInit`：延迟加载-->Number;非必传;默认*0*
+>
+	这个属性可以解决因各种原因（如<transition>组件动画）使dom加载失败的情况
+>
+
 * `@ready`：UEditor ready时触发-->返回当前UEditor的实例，可以使用其API
 >
 	// 里面key字段为当前编辑器的ID
